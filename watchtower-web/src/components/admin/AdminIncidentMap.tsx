@@ -4,14 +4,14 @@ import {
   Popup,
   TileLayer,
 } from "react-leaflet";
-import L from "leaflet";
+// import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
-import greenMarker from "../../assets/markers/marker-green.png";
-import yellowMarker from "../../assets/markers/marker-yellow.png";
-import orangeMarker from "../../assets/markers/marker-orange.png";
-import redMarker from "../../assets/markers/marker-red.png";
-import markerShadow from "../../assets/markers/marker-shadow.png";
+// import greenMarker from "../../assets/markers/marker-green.png";
+// import yellowMarker from "../../assets/markers/marker-yellow.png";
+// import orangeMarker from "../../assets/markers/marker-orange.png";
+// import redMarker from "../../assets/markers/marker-red.png";
+// import markerShadow from "../../assets/markers/marker-shadow.png";
 import { getMarker } from "../../utils/mapMarkers";
 
 interface Incident {
