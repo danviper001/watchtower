@@ -45,25 +45,25 @@ interface Props {
   incidents: Incident[];
 }
 
-function getMarkerIcon(severity: string) {
-  let iconUrl = greenMarker;
+// function getMarkerIcon(severity: string) {
+//   let iconUrl = greenMarker;
 
-  switch (severity) {
-    case "Medium":
-      iconUrl = yellowMarker;
-      break;
+//   switch (severity) {
+//     case "Medium":
+//       iconUrl = yellowMarker;
+//       break;
 
-    case "High":
-      iconUrl = orangeMarker;
-      break;
+//     case "High":
+//       iconUrl = orangeMarker;
+//       break;
 
-    case "Critical":
-      iconUrl = redMarker;
-      break;
+//     case "Critical":
+//       iconUrl = redMarker;
+//       break;
 
-    default:
-      iconUrl = greenMarker;
-  }
+//     default:
+//       iconUrl = greenMarker;
+//   }
 
   return new L.Icon({
     iconUrl,
