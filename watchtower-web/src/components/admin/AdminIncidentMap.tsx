@@ -65,16 +65,16 @@ interface Props {
 //       iconUrl = greenMarker;
 //   }
 
-  return new L.Icon({
-    iconUrl,
-    shadowUrl: markerShadow,
+//   return new L.Icon({
+//     iconUrl,
+//     shadowUrl: markerShadow,
 
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    shadowSize: [41, 41],
-  });
-}
+//     iconSize: [25, 41],
+//     iconAnchor: [12, 41],
+//     popupAnchor: [1, -34],
+//     shadowSize: [41, 41],
+//   });
+// }
 
 export default function AdminIncidentMap({
   incidents,
