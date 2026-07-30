@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://watchtower-api-1e6l.onrender.com",
+  baseURL: "https://watchtower-api-1e6l.onrender.com/api",
 });
 
 api.interceptors.request.use((config) => {
