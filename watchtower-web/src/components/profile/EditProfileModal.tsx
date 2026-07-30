@@ -84,10 +84,28 @@ export default function EditProfileModal({
       onClick={onClose}
     >
       <div
-        className="flex min-h-screen items-center justify-center p-6"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <Card className="w-full max-w-2xl border border-cyan-500/20 bg-slate-900">
+  className="
+  flex
+  min-h-screen
+  items-center
+  justify-center
+  p-4
+  overflow-y-auto
+  "
+  onClick={(e) => e.stopPropagation()}
+>
+        <Card
+  className="
+  w-full
+  max-w-2xl
+  max-h-[90vh]
+  overflow-y-auto
+  border
+  border-cyan-500/20
+  bg-black/80
+  backdrop-blur-2xl
+  "
+>
 
           <div className="mb-8 flex items-center justify-between">
 
@@ -217,7 +235,21 @@ export default function EditProfileModal({
 
             </div>
 
-            <div className="flex justify-end gap-4">
+            <div
+  className="
+  sticky
+  bottom-0
+  mt-8
+  flex
+  justify-end
+  gap-4
+  border-t
+  border-white/10
+  bg-black/80
+  pt-5
+  backdrop-blur-xl
+  "
+>
 
               <Button
                 onClick={onClose}

@@ -1,19 +1,21 @@
 import AuroraBackground from "../components/animations/AuroraBackground";
 import FloatingParticles from "../components/animations/FloatingParticles";
+import MouseGlow from "../components/animations/MouseGlow";
 import Reveal from "../components/animations/Reveal";
 
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
+
 import AnimatedBackground from "../components/ui/AnimatedBackground";
+
 import Hero from "../components/hero/Hero";
 import Stats from "../components/home/Stats";
 import Features from "../components/home/Features";
 import HowItWorks from "../components/home/HowItWorks";
-import MouseGlow from "../components/animations/MouseGlow";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#050816] text-white overflow-x-hidden">
+    <div className="min-h-screen overflow-x-hidden bg-black text-white">
       <AnimatedBackground />
       <AuroraBackground />
       <FloatingParticles />
@@ -23,28 +25,42 @@ export default function Home() {
 
       <main className="pt-20">
 
-        <Reveal>
-          <Hero />
-        </Reveal>
+        {/* HERO */}
+        <section id="home">
+          <Reveal>
+            <Hero />
+          </Reveal>
+        </section>
 
-        <Reveal delay={0.2}>
-          <Stats />
-        </Reveal>
+        {/* STATISTICS */}
+        <section id="stats">
+          <Reveal delay={0.2}>
+            <Stats />
+          </Reveal>
+        </section>
 
-        <Reveal delay={0.3}>
-          <Features />
-        </Reveal>
+        {/* FEATURES */}
+        <section id="features">
+          <Reveal delay={0.3}>
+            <Features />
+          </Reveal>
+        </section>
 
-        <Reveal delay={0.4}>
-          <HowItWorks />
-        </Reveal>
+        {/* HOW IT WORKS */}
+        <section id="how-it-works">
+          <Reveal delay={0.4}>
+            <HowItWorks />
+          </Reveal>
+        </section>
 
       </main>
 
-      <Reveal delay={0.5}>
-        <Footer />
-      </Reveal>
-
+      {/* CONTACT */}
+      <section id="contact">
+        <Reveal delay={0.5}>
+          <Footer />
+        </Reveal>
+      </section>
     </div>
   );
 }

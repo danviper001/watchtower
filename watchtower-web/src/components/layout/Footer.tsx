@@ -1,110 +1,54 @@
-import Container from "../ui/Container";
-import { Shield, Mail, Phone, MapPin } from "lucide-react";
+import { motion } from "framer-motion";
 
-export default function Footer() {
+export default function AnimatedBackground() {
   return (
-    <footer className="border-t border-white/10 bg-slate-950">
-      <Container>
-        <div className="py-16">
+    <div className="fixed inset-0 -z-50 overflow-hidden bg-[#050505]">
 
-          <div className="grid gap-10 md:grid-cols-3">
+      {/* Main Glow */}
 
-            {/* Brand */}
-            <div>
-              <div className="flex items-center gap-3">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-600">
-                  <Shield className="text-white" size={26} />
-                </div>
+      <motion.div
+        animate={{
+          x: [0, 200, -100, 0],
+          y: [0, -150, 120, 0],
+          scale: [1, 1.4, 1],
+        }}
+        transition={{
+          duration: 22,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute left-1/3 top-1/3 h-[700px] w-[700px] rounded-full bg-cyan-500/10 blur-[170px]"
+      />
 
-                <div>
-                  <h2 className="text-2xl font-bold">
-                    WatchTower
-                  </h2>
+      <motion.div
+        animate={{
+          x: [0, -220, 120, 0],
+          y: [0, 180, -120, 0],
+          scale: [1.2, 0.9, 1.2],
+        }}
+        transition={{
+          duration: 28,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute right-0 top-0 h-[650px] w-[650px] rounded-full bg-blue-600/10 blur-[180px]"
+      />
 
-                  <p className="text-sm text-gray-400">
-                    Smart Community Safety
-                  </p>
-                </div>
-              </div>
+      {/* Grid */}
 
-              <p className="mt-6 leading-7 text-gray-400">
-                WatchTower helps communities report emergencies,
-                track incidents and improve public safety through
-                real-time technology.
-              </p>
-            </div>
+      <div
+        className="
+          absolute
+          inset-0
+          opacity-[0.04]
+          bg-[linear-gradient(rgba(255,255,255,.15)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.15)_1px,transparent_1px)]
+          bg-[size:60px_60px]
+        "
+      />
 
-            {/* Quick Links */}
-            <div>
-              <h3 className="mb-6 text-xl font-semibold">
-                Quick Links
-              </h3>
+      {/* Noise */}
 
-              <ul className="space-y-4 text-gray-400">
-
-                <li>
-                  <a href="#" className="hover:text-cyan-400">
-                    Home
-                  </a>
-                </li>
-
-                <li>
-                  <a href="#" className="hover:text-cyan-400">
-                    Features
-                  </a>
-                </li>
-
-                <li>
-                  <a href="#" className="hover:text-cyan-400">
-                    Report Incident
-                  </a>
-                </li>
-
-                <li>
-                  <a href="#" className="hover:text-cyan-400">
-                    Login
-                  </a>
-                </li>
-
-              </ul>
-            </div>
-
-            {/* Contact */}
-            <div>
-
-              <h3 className="mb-6 text-xl font-semibold">
-                Contact
-              </h3>
-
-              <div className="space-y-4 text-gray-400">
-
-                <div className="flex items-center gap-3">
-                  <Mail size={18} />
-                  support@watchtower.com
-                </div>
-
-                <div className="flex items-center gap-3">
-                  <Phone size={18} />
-                  +234 8154164335
-                </div>
-
-                <div className="flex items-center gap-3">
-                  <MapPin size={18} />
-                  Lagos, Nigeria
-                </div>
-
-              </div>
-
-            </div>
-
-          </div>
-
-          <div className="mt-12 border-t border-white/10 pt-6 text-center text-gray-500">
-            © {new Date().getFullYear()} WatchTower. All Rights Reserved.
-          </div>
-
-        </div>
-      </Container>
-    </footer>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#050505_90%)]" />
+    </div>
   );
 }

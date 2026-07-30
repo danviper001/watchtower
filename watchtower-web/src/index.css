@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+/* Reset */
+
 *,
 *::before,
 *::after {
@@ -16,25 +18,82 @@ body,
   min-height: 100%;
   margin: 0;
   padding: 0;
+  background: #030303;
 }
 
 body {
-  background: #050816;
+  background: #030303;
   color: white;
   font-family: Inter, system-ui, sans-serif;
   overflow-x: hidden;
 }
+
+/* Links */
 
 a {
   text-decoration: none;
   color: inherit;
 }
 
+/* Buttons */
+
 button {
   font: inherit;
 }
 
+/* Images */
+
 img {
   max-width: 100%;
   display: block;
+}
+
+/* Selection */
+
+::selection {
+  background: #00ffff;
+  color: black;
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    to bottom,
+    #06b6d4,
+    #2563eb
+  );
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    to bottom,
+    #22d3ee,
+    #3b82f6
+  );
+}
+
+/* Optional Smooth Fade */
+
+body {
+  animation: fadeIn .5s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }

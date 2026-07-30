@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { Shield } from "lucide-react";
+import { Shield, Menu, X } from "lucide-react";
+import { Link as ScrollLink } from "react-scroll";
 import { useNavigate } from "react-router-dom";
 
-import Button from "../ui/Button";
 import Container from "../ui/Container";
-
+import Button from "../ui/Button";
 import NotificationBell from "./NotificationBell";
 import NotificationDrawer from "./NotificationDrawer";
 import ProfileDropdown from "./ProfileDropdown";
@@ -17,6 +17,7 @@ export default function Navbar() {
   const { user } = useAuth();
 
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [mobileMenu, setMobileMenu] = useState(false);
 
   function goHome() {
     if (!user) {
@@ -36,11 +37,13 @@ export default function Navbar() {
       default:
         navigate("/dashboard");
     }
+
+    setMobileMenu(false);
   }
 
   return (
     <>
-      <header className="fixed left-0 right-0 top-0 z-50 border-b border-white/10 bg-slate-950/70 backdrop-blur-xl">
+      <header className="fixed left-0 right-0 top-0 z-50 border-b border-white/10 bg-black/70 backdrop-blur-xl">
         <Container>
           <nav className="flex h-20 items-center justify-between">
 
@@ -51,10 +54,7 @@ export default function Navbar() {
               className="flex cursor-pointer items-center gap-3"
             >
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-600 shadow-lg shadow-cyan-500/20">
-                <Shield
-                  size={28}
-                  className="text-white"
-                />
+                <Shield size={28} className="text-white" />
               </div>
 
               <div>
@@ -68,39 +68,51 @@ export default function Navbar() {
               </div>
             </div>
 
-            {/* Navigation */}
+            {/* Desktop Navigation */}
 
             <div className="hidden items-center gap-8 lg:flex">
 
               {!user && (
                 <>
-                  <button
-                    onClick={() => navigate("/")}
-                    className="text-gray-300 transition hover:text-cyan-400"
+                  <ScrollLink
+                    to="home"
+                    smooth
+                    duration={600}
+                    offset={-80}
+                    className="cursor-pointer text-gray-300 transition hover:text-cyan-400"
                   >
                     Home
-                  </button>
+                  </ScrollLink>
 
-                  <a
-                    href="#features"
-                    className="text-gray-300 transition hover:text-cyan-400"
+                  <ScrollLink
+                    to="features"
+                    smooth
+                    duration={600}
+                    offset={-80}
+                    className="cursor-pointer text-gray-300 transition hover:text-cyan-400"
                   >
                     Features
-                  </a>
+                  </ScrollLink>
 
-                  <a
-                    href="#stats"
-                    className="text-gray-300 transition hover:text-cyan-400"
+                  <ScrollLink
+                    to="stats"
+                    smooth
+                    duration={600}
+                    offset={-80}
+                    className="cursor-pointer text-gray-300 transition hover:text-cyan-400"
                   >
                     Statistics
-                  </a>
+                  </ScrollLink>
 
-                  <a
-                    href="#contact"
-                    className="text-gray-300 transition hover:text-cyan-400"
+                  <ScrollLink
+                    to="contact"
+                    smooth
+                    duration={600}
+                    offset={-80}
+                    className="cursor-pointer text-gray-300 transition hover:text-cyan-400"
                   >
                     Contact
-                  </a>
+                  </ScrollLink>
                 </>
               )}
 
@@ -164,7 +176,6 @@ export default function Navbar() {
                   </button>
                 </>
               )}
-
             </div>
 
             {/* Right Side */}
@@ -182,19 +193,174 @@ export default function Navbar() {
               ) : (
                 <Button
                   onClick={() => navigate("/login")}
-                  className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:shadow-xl hover:shadow-cyan-500/30"
+                  className="hidden md:flex bg-gradient-to-r from-cyan-500 to-blue-600 text-white"
                 >
                   Login
                 </Button>
               )}
 
+              {/* Mobile Menu Button */}
+
+              <button
+                onClick={() => setMobileMenu(!mobileMenu)}
+                className="lg:hidden"
+              >
+                {mobileMenu ? (
+                  <X className="text-white" size={30} />
+                ) : (
+                  <Menu className="text-white" size={30} />
+                )}
+              </button>
+
             </div>
 
           </nav>
+
+          {/* Mobile Menu */}
+
+          {mobileMenu && (
+            <div className="lg:hidden border-t border-white/10 bg-black/95">
+
+              <div className="flex flex-col gap-5 py-6">
+
+                {!user && (
+                  <>
+                    <ScrollLink
+                      to="home"
+                      smooth
+                      duration={500}
+                      offset={-80}
+                      onClick={() => setMobileMenu(false)}
+                      className="cursor-pointer text-gray-300 hover:text-cyan-400"
+                    >
+                      Home
+                    </ScrollLink>
+
+                    <ScrollLink
+                      to="features"
+                      smooth
+                      duration={500}
+                      offset={-80}
+                      onClick={() => setMobileMenu(false)}
+                      className="cursor-pointer text-gray-300 hover:text-cyan-400"
+                    >
+                      Features
+                    </ScrollLink>
+
+                    <ScrollLink
+                      to="stats"
+                      smooth
+                      duration={500}
+                      offset={-80}
+                      onClick={() => setMobileMenu(false)}
+                      className="cursor-pointer text-gray-300 hover:text-cyan-400"
+                    >
+                      Statistics
+                    </ScrollLink>
+
+                    <ScrollLink
+                      to="contact"
+                      smooth
+                      duration={500}
+                      offset={-80}
+                      onClick={() => setMobileMenu(false)}
+                      className="cursor-pointer text-gray-300 hover:text-cyan-400"
+                    >
+                      Contact
+                    </ScrollLink>
+
+                    <Button
+                      onClick={() => {
+                        navigate("/login");
+                        setMobileMenu(false);
+                      }}
+                      className="bg-cyan-600"
+                    >
+                      Login
+                    </Button>
+                  </>
+                )}
+
+                {user?.role === "citizen" && (
+                  <>
+                    <button
+                      onClick={() => {
+                        navigate("/dashboard");
+                        setMobileMenu(false);
+                      }}
+                    >
+                      Dashboard
+                    </button>
+
+                    <button
+                      onClick={() => {
+                        navigate("/report");
+                        setMobileMenu(false);
+                      }}
+                    >
+                      Report Incident
+                    </button>
+
+                    <button
+                      onClick={() => {
+                        navigate("/my-reports");
+                        setMobileMenu(false);
+                      }}
+                    >
+                      My Reports
+                    </button>
+                  </>
+                )}
+
+                {user?.role === "admin" && (
+                  <>
+                    <button
+                      onClick={() => {
+                        navigate("/admin");
+                        setMobileMenu(false);
+                      }}
+                    >
+                      Dashboard
+                    </button>
+
+                    <button
+                      onClick={() => {
+                        navigate("/admin/incidents");
+                        setMobileMenu(false);
+                      }}
+                    >
+                      Incidents
+                    </button>
+
+                    <button
+                      onClick={() => {
+                        navigate("/admin/map");
+                        setMobileMenu(false);
+                      }}
+                    >
+                      Incident Map
+                    </button>
+                  </>
+                )}
+
+                {user?.role === "responder" && (
+                  <button
+                    onClick={() => {
+                      navigate("/responder");
+                      setMobileMenu(false);
+                    }}
+                  >
+                    Dashboard
+                  </button>
+                )}
+
+              </div>
+
+            </div>
+          )}
+
         </Container>
       </header>
-
-      {/* Notification Drawer */}
 
       {user && (
         <NotificationDrawer

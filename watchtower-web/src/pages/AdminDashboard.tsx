@@ -115,7 +115,7 @@ useEffect(() => {
     <>
       <Navbar />
 
-      <main className="min-h-screen bg-slate-950 pt-28 pb-20">
+      <main className="min-h-screen bg-transparent pt-28 pb-20">
         <Container>
 
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">

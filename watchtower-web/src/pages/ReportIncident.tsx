@@ -76,7 +76,7 @@ export default function ReportIncident() {
     <AnimatedBackground />
       <Navbar />
 
-      <main className="min-h-screen bg-slate-950 pt-28 pb-24">
+      <main className="min-h-screen bg-transparent pt-28 pb-24">
 
         <Container>
 
