@@ -50,23 +50,23 @@ export default function Navbar() {
             {/* Logo */}
 
             <div
-              onClick={goHome}
-              className="flex cursor-pointer items-center gap-3"
-            >
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-600 shadow-lg shadow-cyan-500/20">
-                <Shield size={28} className="text-white" />
-              </div>
+  onClick={goHome}
+  className="flex cursor-pointer items-center gap-2 sm:gap-3 flex-shrink-0"
+>
+  <div className="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-600 shadow-lg shadow-cyan-500/20">
+    <Shield className="text-white" size={22} />
+  </div>
 
-              <div>
-                <h1 className="text-2xl font-black tracking-wide text-white">
-                  WatchTower
-                </h1>
+  <div>
+    <h1 className="text-lg sm:text-2xl font-black tracking-wide text-white">
+      WatchTower
+    </h1>
 
-                <p className="text-xs text-gray-400">
-                  Smart Community Safety
-                </p>
-              </div>
-            </div>
+    <p className="hidden sm:block text-xs text-gray-400">
+      Smart Community Safety
+    </p>
+  </div>
+</div>
 
             {/* Desktop Navigation */}
 
@@ -180,31 +180,33 @@ export default function Navbar() {
 
             {/* Right Side */}
 
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2 sm:gap-4">
 
               {user && (
-                <NotificationBell
-                  onClick={() => setDrawerOpen(true)}
-                />
-              )}
+  <div className="hidden sm:block">
+    <NotificationBell
+      onClick={() => setDrawerOpen(true)}
+    />
+  </div>
+)}
 
               {user ? (
                 <ProfileDropdown />
               ) : (
                 <Button
-                  onClick={() => navigate("/login")}
-                  className="hidden md:flex bg-gradient-to-r from-cyan-500 to-blue-600 text-white"
-                >
-                  Login
-                </Button>
+  onClick={() => navigate("/login")}
+  className="h-10 px-5 text-sm bg-gradient-to-r from-cyan-500 to-blue-600 text-white"
+>
+  Login
+</Button>
               )}
 
               {/* Mobile Menu Button */}
 
               <button
-                onClick={() => setMobileMenu(!mobileMenu)}
-                className="lg:hidden"
-              >
+  onClick={() => setMobileMenu(!mobileMenu)}
+  className="lg:hidden rounded-lg p-2 hover:bg-white/10 transition"
+>
                 {mobileMenu ? (
                   <X className="text-white" size={30} />
                 ) : (
@@ -219,9 +221,9 @@ export default function Navbar() {
           {/* Mobile Menu */}
 
           {mobileMenu && (
-            <div className="lg:hidden border-t border-white/10 bg-black/95">
+           <div className="lg:hidden border-t border-white/10 bg-black/95 backdrop-blur-xl">
 
-              <div className="flex flex-col gap-5 py-6">
+              <div className="flex flex-col gap-5 px-4 py-6">
 
                 {!user && (
                   <>
