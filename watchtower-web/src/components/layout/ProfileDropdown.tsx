@@ -7,6 +7,7 @@ import {
   LogOut,
   ChevronDown,
 } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
 import { useAuth } from "../../contexts/AuthContext";
 
 export default function ProfileDropdown() {
@@ -45,9 +46,20 @@ export default function ProfileDropdown() {
     >
       <button
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-3 rounded-xl border border-white/10 bg-slate-900 px-4 py-2 transition hover:border-cyan-500"
+        className="
+          flex items-center gap-2
+          rounded-2xl
+          border border-white/10
+          bg-white/5
+          backdrop-blur-xl
+          px-2 py-2
+          sm:px-4
+          transition-all
+          hover:border-cyan-500/50
+          hover:bg-white/10
+        "
       >
-        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-cyan-600 font-bold text-white">
+        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 font-bold text-white shadow-lg shadow-cyan-500/20">
           {user.fullName.charAt(0).toUpperCase()}
         </div>
 
@@ -63,72 +75,103 @@ export default function ProfileDropdown() {
 
         <ChevronDown
           size={18}
-          className={`text-white transition ${
+          className={`hidden md:block text-white transition-transform duration-300 ${
             open ? "rotate-180" : ""
           }`}
         />
       </button>
 
-      {open && (
-        <div className="absolute right-0 mt-3 w-64 overflow-hidden rounded-2xl border border-white/10 bg-slate-900 shadow-2xl">
-
-          <button
-  onClick={() => {
-    if (user.role === "admin") {
-      navigate("/admin");
-    } else if (user.role === "responder") {
-      navigate("/responder");
-    } else {
-      navigate("/dashboard");
-    }
-
-    setOpen(false);
-  }}
-  className="flex w-full items-center gap-3 px-5 py-4 text-left text-white hover:bg-slate-800"
->
-  <LayoutDashboard size={18} />
-  Dashboard
-</button>
-
-          <button
-            onClick={() => {
-              navigate("/profile");
-              setOpen(false);
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: 10,
+              scale: 0.95,
             }}
-            className="flex w-full items-center gap-3 px-5 py-4 text-left text-white hover:bg-slate-800"
+            animate={{
+              opacity: 1,
+              y: 0,
+              scale: 1,
+            }}
+            exit={{
+              opacity: 0,
+              y: 10,
+              scale: 0.95,
+            }}
+            transition={{
+              duration: 0.2,
+            }}
+            className="
+              absolute
+              right-0
+              mt-3
+              w-64
+              overflow-hidden
+              rounded-2xl
+              border border-white/10
+              bg-black/90
+              backdrop-blur-2xl
+              shadow-2xl
+              shadow-cyan-500/10
+            "
           >
-            <User size={18} />
-            My Profile
-          </button>
-
-          <button
+            <button
               onClick={() => {
-
-               navigate("/notifications");
+                if (user.role === "admin") {
+                  navigate("/admin");
+                } else if (user.role === "responder") {
+                  navigate("/responder");
+                } else {
+                  navigate("/dashboard");
+                }
 
                 setOpen(false);
-            }}
-            className="flex w-full items-center gap-3 px-5 py-4 text-left text-white hover:bg-slate-800"
-          >
-            <Bell size={18} />
-            Notifications
-          </button>
+              }}
+              className="flex w-full items-center gap-3 px-5 py-4 text-left text-white transition hover:bg-cyan-500/10"
+            >
+              <LayoutDashboard size={18} />
+              Dashboard
+            </button>
 
-          <hr className="border-white/10" />
+            <button
+              onClick={() => {
+                navigate("/profile");
+                setOpen(false);
+              }}
+              className="flex w-full items-center gap-3 px-5 py-4 text-left text-white transition hover:bg-cyan-500/10"
+            >
+              <User size={18} />
+              My Profile
+            </button>
 
-          <button
-            onClick={() => {
-              logout();
-              navigate("/login");
-            }}
-            className="flex w-full items-center gap-3 px-5 py-4 text-left text-red-400 hover:bg-red-500/10"
-          >
-            <LogOut size={18} />
-            Logout
-          </button>
+            <button
+              onClick={() => {
+                navigate("/notifications");
+                setOpen(false);
+              }}
+              className="flex w-full items-center gap-3 px-5 py-4 text-left text-white transition hover:bg-cyan-500/10"
+            >
+              <Bell size={18} />
+              Notifications
+            </button>
 
-        </div>
-      )}
+            <hr className="border-white/10" />
+
+            <button
+              onClick={() => {
+                logout();
+                navigate("/login");
+                setOpen(false);
+              }}
+              className="flex w-full items-center gap-3 px-5 py-4 text-left text-red-400 transition hover:bg-red-500/10"
+            >
+              <LogOut size={18} />
+              Logout
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
